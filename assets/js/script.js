@@ -106,7 +106,49 @@ function toggleDemoWidget(url, width = '400px', height = '400px') {
   }
 
   function displayIframeOverlay() {
-	window.open('http://localhost:3000', '_blank')
+	if (window.innerHeight < 800) {
+		window.open('https://demo.deepfreeze.ai/', '_blank')
+		return
+	}
+	const container = document.createElement('div'); // Create a container element
+	container.style.position = 'fixed';
+	container.style.top = '0';
+	container.style.left = '0';
+	container.style.width = '100%';
+	container.style.height = '100%';
+	container.style.zIndex = '99999';
+  
+	const iframe = document.createElement('iframe');
+	iframe.autoplay = true;
+	iframe.allow = "microphone";
+	iframe.style.width = '100%';
+	iframe.style.height = '100%';
+	iframe.style.border = 'none';
+	iframe.src = 'https://demo.deepfreeze.ai'; // Replace with the actual source URL
+  
+	const closeButton = document.createElement('button');
+	closeButton.innerText = '×';
+	closeButton.style.position = 'absolute';
+	closeButton.style.top = '10px';  // Position button in the top-right corner
+	closeButton.style.right = '10px';
+	closeButton.style.width = '24px';
+	closeButton.style.height = '24px';
+	closeButton.style.border = 'none';
+	closeButton.style.borderRadius = '50%';
+	closeButton.style.backgroundColor = 'red';
+	closeButton.style.color = 'white';
+	closeButton.style.fontSize = '16px';
+	closeButton.style.cursor = 'pointer';
+	closeButton.style.zIndex = '910000';  // Ensure it's above the iframe
+  
+	// Close the iframe on button click
+	closeButton.addEventListener('click', () => {
+	  document.body.removeChild(container);
+	});
+  
+	container.appendChild(iframe);
+	container.appendChild(closeButton);
+	document.body.appendChild(container);
   }
 
 checkToFAQ();
@@ -547,7 +589,7 @@ checkToFAQ();
 		trigger: '.choose-one', // Element to watch
 		start: 'top top',    // When the top of the element reaches the top of the viewport
 		onEnter: () => {
-			toggleDemoWidget("http://localhost:3000")
+			toggleDemoWidget("https://demo.deepfreeze.ai")
 		},
 		onLeaveBack: () => {
 		  document.getElementById('widget').remove();
