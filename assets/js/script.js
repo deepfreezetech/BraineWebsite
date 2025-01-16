@@ -1,3 +1,28 @@
+function goToFaq(isRedirect) {
+	if (isRedirect) {
+		window.location.href = "index.html?deeplink=faq";
+	}
+	$('body').removeClass('mobile-menu-visible');
+	$('.mobile-menu .navigation > li').removeClass('open');
+	$('.mobile-menu .navigation li ul').slideUp(0);
+	gsap.to('html, body', {
+		scrollTop: $('.faq-one').offset().top, 
+		duration: 0.2, // Adjust duration in seconds
+		ease: 'linear',
+		  delay: 0
+	  });
+}
+
+function checkToFAQ() {
+	const url = new URL(window.location.href);
+	const params = new URLSearchParams(url.search);
+	if (params.get('deeplink') === 'faq') {
+		goToFaq();
+	}
+}
+
+checkToFAQ();
+
 (function($) {
 	
 	"use strict";
@@ -423,46 +448,11 @@
 	
 	// Main Slider
 	var slider = new Swiper('.main-slider', {
-		slidesPerView: 1,
+		slidesPerView: 1, 
 		spaceBetween: 0,
-		loop: true,
-		autoplay: {
-			enabled: true,
-			delay: 6000
-		},
-		// Navigation arrows
-		navigation: {
-			nextEl: '.main-slider-next',
-			prevEl: '.main-slider-prev',
-			clickable: true,
-		},
-		//Pagination
-		pagination: {
-			el: ".swiper-pagination",
-			clickable: true,
-		},
-		speed: 500,
-		breakpoints: {
-			'1600': {
-				slidesPerView: 1,
-			},
-			'1200': {
-				slidesPerView: 1,
-			},
-			'992': {
-				slidesPerView: 1,
-			},
-			'768': {
-				slidesPerView: 1,
-			},
-			'576': {
-				slidesPerView: 1,
-			},
-			'0': {
-				slidesPerView: 1,
-			},
-		},
-	});
+		loop: false,
+		slidesPerGroup: 1
+	  });
 
 
 
