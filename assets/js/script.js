@@ -22,6 +22,11 @@ function checkToFAQ() {
 }
 
 function toggleDemoHeader() {
+	if (window.innerWidth < 800) {
+		window.open('https://demo.deepfreeze.ai/', '_blank')
+		return
+	}
+
 	const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 	const silentBuffer = audioContext.createBuffer(1, 1, audioContext.sampleRate);
     const silentSource = audioContext.createBufferSource();
@@ -29,11 +34,6 @@ function toggleDemoHeader() {
     silentSource.connect(audioContext.destination);
     silentSource.start(0);
     console.log("Audio autoplay enabled");
-
-	if (window.innerWidth < 800) {
-		displayIframeOverlay()
-		return
-	}
 
 	let iframeWindow = document.getElementById("avatar").contentWindow;
 	iframeWindow.postMessage('showInput', "*");
@@ -106,10 +106,6 @@ function toggleDemoWidget(url, width = '400px', height = '400px') {
   }
 
   function displayIframeOverlay() {
-	if (window.innerHeight < 800) {
-		window.open('https://demo.deepfreeze.ai/', '_blank')
-		return
-	}
 	const container = document.createElement('div'); // Create a container element
 	container.style.position = 'fixed';
 	container.style.top = '0';
