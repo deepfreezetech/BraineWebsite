@@ -87,6 +87,18 @@
 
 ***/
 
+@media (max-width: 768px) {
+	.mobile-hide {
+	  display: none;
+	}
+  }
+
+  @media (min-width: 768px) {
+	.mobile-only {
+	  display: none;
+	}
+  }
+
 .slider-one{
 	position:relative;
 }
@@ -117,6 +129,11 @@
 	bottom: 0px;
 	z-index: 1;
 	background-position: bottom center;
+
+	iframe {
+		width: 100vw;
+		height: 85vh;
+	}
 }
 
 .slider-one_pattern-two{

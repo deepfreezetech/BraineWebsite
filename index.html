@@ -26,8 +26,8 @@
 <div class="page-wrapper">
 	
 	<!-- Cursor -->
-	<div class="cursor"></div>
-	<div class="cursor-follower"></div>
+	<!-- <div class="cursor"></div>
+	<div class="cursor-follower"></div> -->
 	<!-- Cursor End -->
  	
 	<!-- Preloader -->
@@ -79,7 +79,7 @@
 								<div class="navbar-collapse collapse clearfix" id="navbarSupportedContent">
 									<ul class="navigation clearfix">
 										<li><a href="index.html">Home</a></li>
-										<li><a href="#">Demo</a></li>
+										<li onclick="displayIframeOverlay()"><a href="#">Demo</a></li>
 										<li onclick="goToFaq()"><a href="#">FAQ</a></li>
 										<li><a href="about.html">About</a></li>
 										<li><a href="contact.html">Contact</a></li>
@@ -126,16 +126,17 @@
 
 				<!-- Slide -->
 				<div class="swiper-slide">
-					<div class="slider-one_pattern" style="background-image:url(assets/images/main-slider/pattern-1.png)"></div>
-					<div class="auto-container">
+					<div class="mobile-only slider-one_pattern" style="background-image:url(assets/images/main-slider/pattern-1.png)"></div>
+					<div class="mobile-hide slider-one_pattern"><iframe id="avatar" src="http://localhost:3000?place=header" autoplay="true" allow="microphone"></iframe></div>
+					<div class="auto-container slider-one-toggle-parent">
 						<div class="row clearfix">
 							<!-- Content Column -->
-							<div class="slider-one_content col-lg-7 col-md-6 col-sm-6">
+							<div class="slider-one_content col-lg-7 col-md-6 col-sm-6 slider-one-toggle">
 								<div class="slider-one_content-inner">
 									<h2 class="slider-one_heading">THE MOST <span>COST-EFFECTIVE</span> AI DIGITAL HUMAN THAT BRINGS YOUR ORGANIZATION TO LIFE.</h1>
 									<div class="slider-one_text">DeepFreeze empowers organizations to present their information more clearly and engagingly. Drive higher conversion rates, inspire action, and elevate your brand with DeepFreeze AI digital human solution.</div>
 									<div class="slider-one_button d-flex align-items-center flex-wrap">
-										<a href="about.html" class="template-btn btn-style-one">
+										<a class="template-btn btn-style-one" onclick="toggleDemoHeader()">
 											<span class="btn-wrap">
 												<span class="text-one">Try our Demo</span>
 												<span class="text-two">Try our Demo</span>
@@ -561,7 +562,7 @@
 										<h5 class="footer-title">Resources</h5>
 										<ul class="footer-pages_list">
 											<li><a href="index.html">Home</a></li>
-											<li><a href="#">Demo</a></li>
+											<li onclick="displayIframeOverlay()"><a href="#">Demo</a></li>
 											<li><a href="about.html">About</a></li>
 										</ul>
 									</div>

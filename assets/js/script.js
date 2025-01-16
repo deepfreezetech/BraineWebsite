@@ -21,6 +21,94 @@ function checkToFAQ() {
 	}
 }
 
+function toggleDemoHeader() {
+	const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+	const silentBuffer = audioContext.createBuffer(1, 1, audioContext.sampleRate);
+    const silentSource = audioContext.createBufferSource();
+    silentSource.buffer = silentBuffer;
+    silentSource.connect(audioContext.destination);
+    silentSource.start(0);
+    console.log("Audio autoplay enabled");
+
+	if (window.innerWidth < 800) {
+		displayIframeOverlay()
+		return
+	}
+
+	let iframeWindow = document.getElementById("avatar").contentWindow;
+	iframeWindow.postMessage('showInput', "*");
+
+	gsap.to(".slider-one-toggle", { 
+		opacity: 0, 
+		delay: 0,
+		duration: 1, 
+		ease: "linear" 
+	  });
+	setTimeout(() => {
+		document.getElementsByClassName('slider-one-toggle-parent')[0].style.pointerEvents = 'none';
+	}, 1000);
+}
+
+function toggleDemoWidget(url, width = '400px', height = '400px') {
+	if (window.innerWidth < 800) {return}
+	// Create the iframe element
+	const iframe = document.createElement('iframe');
+
+  // Set iframe attributes
+  iframe.src = url;
+  iframe.allow = "microphone";
+  iframe.autoplay = true;
+  iframe.style.position = 'fixed';
+  iframe.style.bottom = '100px';
+  iframe.style.right = '40px';  // Move to the right
+  iframe.style.width = width;
+  iframe.style.height = height;
+  iframe.style.border = 'none';
+  iframe.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+  iframe.style.borderRadius = '10px';
+  iframe.style.zIndex = '9999';  // Increased z-index for iframe
+
+  // Create a close button
+  const closeButton = document.createElement('button');
+  closeButton.innerText = '×';
+  closeButton.style.position = 'absolute';
+  closeButton.style.top = '-410px';  // Adjust button position slightly above the iframe
+  closeButton.style.right = '10px';  // Position button in the top-right corner
+  closeButton.style.width = '24px';
+  closeButton.style.height = '24px';
+  closeButton.style.border = 'none';
+  closeButton.style.borderRadius = '50%';
+  closeButton.style.backgroundColor = 'red';
+  closeButton.style.color = 'white';
+  closeButton.style.fontSize = '16px';
+  closeButton.style.cursor = 'pointer';
+  closeButton.style.zIndex = '10000';  // Ensure it's above the iframe
+
+  // Close the iframe on button click
+  closeButton.addEventListener('click', () => {
+    document.body.removeChild(container);
+  });
+
+  // Create a container for the iframe and button
+  const container = document.createElement('div');
+  container.style.position = 'fixed'; // Use fixed position so it's positioned on the screen
+  container.style.bottom = '100px';
+  container.style.right = '20px';  // Container's right should match iframe's right
+  container.style.display = 'inline-block';  // Inline-block for button positioning
+  container.style.zIndex = '9998';  // Set z-index of container slightly lower than button but still higher than page content
+  container.id = 'widget'
+  // Append iframe and close button to the container
+  container.appendChild(iframe);
+  container.appendChild(closeButton);
+
+  // Append the container to the body
+  document.body.appendChild(container);
+  }
+
+  function displayIframeOverlay() {
+	window.open('http://localhost:3000', '_blank')
+  }
+
 checkToFAQ();
 
 (function($) {
@@ -454,6 +542,17 @@ checkToFAQ();
 		slidesPerGroup: 1
 	  });
 
+	// Scroll Past Header
+	ScrollTrigger.create({
+		trigger: '.choose-one', // Element to watch
+		start: 'top top',    // When the top of the element reaches the top of the viewport
+		onEnter: () => {
+			toggleDemoWidget("http://localhost:3000")
+		},
+		onLeaveBack: () => {
+		  document.getElementById('widget').remove();
+		}
+	  });
 
 
 	// Single One Slider
