@@ -9,7 +9,7 @@ function goToFaq(isRedirect) {
 		scrollTop: $('.faq-one').offset().top, 
 		duration: 0.2, // Adjust duration in seconds
 		ease: 'linear',
-		  delay: 0
+		  delay: 1
 	  });
 }
 
@@ -49,13 +49,15 @@ function toggleDemoHeader() {
 	}, 1000);
 }
 
-function toggleDemoWidget(url, width = '400px', height = '400px') {
+function toggleDemoWidget(width = '400px', height = '400px') {
 	if (window.innerWidth < 800) {return}
+	
+	document.getElementsByClassName('floating-widget')[0].style.display = 'none';
 	// Create the iframe element
 	const iframe = document.createElement('iframe');
 
   // Set iframe attributes
-  iframe.src = url;
+  iframe.src = "https://demo.deepfreeze.ai";
   iframe.allow = "microphone";
   iframe.autoplay = true;
   iframe.style.position = 'fixed';
@@ -86,7 +88,8 @@ function toggleDemoWidget(url, width = '400px', height = '400px') {
 
   // Close the iframe on button click
   closeButton.addEventListener('click', () => {
-    document.body.removeChild(container);
+    document.getElementsByClassName('floating-widget')[0].style.display = null;
+	document.body.removeChild(container);
   });
 
   // Create a container for the iframe and button
@@ -147,13 +150,14 @@ function toggleDemoWidget(url, width = '400px', height = '400px') {
 	document.body.appendChild(container);
   }
 
-checkToFAQ();
-
 (function($) {
 	
 	"use strict";
 	
-	
+	gsap.config({nullTargetWarn: false})
+	checkToFAQ();
+	document.getElementsByClassName('floating-widget')[0].style.display = 'none';
+
 	//Hide Loading Box (Preloader)
 	function handlePreloader() {
 		if ($('.loader-wrap').length) {
@@ -585,10 +589,11 @@ checkToFAQ();
 		trigger: '.choose-one', // Element to watch
 		start: 'top top',    // When the top of the element reaches the top of the viewport
 		onEnter: () => {
-			toggleDemoWidget("https://demo.deepfreeze.ai")
+			document.getElementsByClassName('floating-widget')[0].style.display = null;
 		},
 		onLeaveBack: () => {
-		  document.getElementById('widget').remove();
+			if (document.getElementById('widget')) {document.getElementById('widget').remove();}
+			document.getElementsByClassName('floating-widget')[0].style.display = 'none';
 		}
 	  });
 
