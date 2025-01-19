@@ -136,6 +136,31 @@
 	padding-bottom: 25px;
 }
 
+.return-left-arrow {
+	position: absolute;
+	top: 150px;
+	left: 7%;
+	background-color: rgba(var(white), 0.6);
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 30px;
+	font-weight: bold;
+	color: black;
+	cursor: pointer;
+	pointer-events: none;
+	opacity: 0;
+  }
+
+  @media (min-width: 1500px) {
+	.return-left-arrow {
+	  left: 15%;
+	}
+  }
+
 .slider-one_pattern-two{
 	position: absolute;
 	left: 0px;

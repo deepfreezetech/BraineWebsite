@@ -38,15 +38,42 @@ function toggleDemoHeader() {
 	let iframeWindow = document.getElementById("avatar").contentWindow;
 	iframeWindow.postMessage('showInput', "*");
 
+	document.querySelector('[class="return-left-arrow"]').style.pointerEvents = 'auto';
+	gsap.to('.return-left-arrow', {
+		opacity: 1, 
+		delay: 0,
+		duration: 1, 
+		ease: "linear" 
+	})
+
 	gsap.to(".slider-one-toggle", { 
 		opacity: 0, 
 		delay: 0,
 		duration: 1, 
 		ease: "linear" 
 	  });
-	setTimeout(() => {
-		document.getElementsByClassName('slider-one-toggle-parent')[0].style.pointerEvents = 'none';
-	}, 1000);
+	document.getElementsByClassName('slider-one-toggle-parent')[0].style.pointerEvents = 'none';
+
+}
+
+function closeDemoHeader() {
+	let iframeWindow = document.getElementById("avatar").contentWindow;
+	iframeWindow.postMessage('hideInput', "*");
+	document.querySelector('[class="return-left-arrow"]').style.pointerEvents = 'none';
+	gsap.to('.return-left-arrow', {
+		opacity: 0, 
+		delay: 0,
+		duration: 1, 
+		ease: "linear" 
+	})
+
+	gsap.to(".slider-one-toggle", { 
+		opacity: 1, 
+		delay: 0,
+		duration: 1, 
+		ease: "linear" 
+	  });
+	document.getElementsByClassName('slider-one-toggle-parent')[0].style.pointerEvents = 'auto';
 }
 
 function toggleDemoWidget(width = '400px', height = '400px') {
