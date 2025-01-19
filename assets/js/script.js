@@ -74,15 +74,15 @@ function toggleDemoWidget(width = '400px', height = '400px') {
   const closeButton = document.createElement('button');
   closeButton.innerText = '×';
   closeButton.style.position = 'absolute';
-  closeButton.style.top = '-410px';  // Adjust button position slightly above the iframe
-  closeButton.style.right = '10px';  // Position button in the top-right corner
-  closeButton.style.width = '24px';
-  closeButton.style.height = '24px';
+  closeButton.style.top = '-390px';  // Adjust button position slightly above the iframe
+  closeButton.style.right = '30px';  // Position button in the top-right corner
+  closeButton.style.width = '30px';
+  closeButton.style.height = '30px';
   closeButton.style.border = 'none';
   closeButton.style.borderRadius = '50%';
-  closeButton.style.backgroundColor = 'red';
-  closeButton.style.color = 'white';
-  closeButton.style.fontSize = '16px';
+  closeButton.style.backgroundColor = 'rgba(255, 255, 255, 0.6)';
+  closeButton.style.color = 'black';
+  closeButton.style.fontSize = '20px';
   closeButton.style.cursor = 'pointer';
   closeButton.style.zIndex = '10000';  // Ensure it's above the iframe
 
@@ -128,15 +128,15 @@ function toggleDemoWidget(width = '400px', height = '400px') {
 	const closeButton = document.createElement('button');
 	closeButton.innerText = '×';
 	closeButton.style.position = 'absolute';
-	closeButton.style.top = '10px';  // Position button in the top-right corner
-	closeButton.style.right = '10px';
-	closeButton.style.width = '24px';
-	closeButton.style.height = '24px';
+	closeButton.style.top = '30px';  // Position button in the top-right corner
+	closeButton.style.right = '30px';
+	closeButton.style.width = '30px';
+	closeButton.style.height = '30px';
 	closeButton.style.border = 'none';
 	closeButton.style.borderRadius = '50%';
-	closeButton.style.backgroundColor = 'red';
-	closeButton.style.color = 'white';
-	closeButton.style.fontSize = '16px';
+	closeButton.style.backgroundColor = 'rgba(255, 255, 255, 0.6)';
+	closeButton.style.color = 'black';
+	closeButton.style.fontSize = '20px';
 	closeButton.style.cursor = 'pointer';
 	closeButton.style.zIndex = '910000';  // Ensure it's above the iframe
   
